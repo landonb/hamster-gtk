@@ -80,7 +80,9 @@ class EditFactDialog(Gtk.Dialog):
             return _u(text_buffer.get_text(start, end, True))
 
         # Create a new fact instance from the provided raw string.
-        fact = Fact.create_from_raw_fact(get_raw_fact_value())
+# FIXME/2018-06-09: (lb): Changed fact parser...
+#        fact = Fact.create_from_raw_fact(get_raw_fact_value())
+        fact = Fact.create_from_factoid(get_raw_fact_value())
         # Instead of transferring all attributes of the parsed fact to the
         # existing ``self._fact`` we just go the other way round and attach the
         # old facts PK to the newly created instance.

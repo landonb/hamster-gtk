@@ -174,7 +174,8 @@ class RawFactEntry(Gtk.Entry):
             Return the segment the cursor is currently in.
 
             Returns:
-                text_type or None: Segment identifier or None if cursor not within any segment.
+                text_type or None: Segment identifier or None if cursor not within
+                any segment.
             """
             result = None
             cursor_position = self.get_position()

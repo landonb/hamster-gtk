@@ -139,12 +139,18 @@ def decompose_raw_fact_string(text, raw=False):
         Nevertheless, this can be the basis for future implementations
         that replace ``Fact.create_from_raw_string`` with a regex based approach.
     """
+# FIXME/2018-06-09: (lb): See Parser. The timeinfo format is changed...
     time_regex = r'([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]'
     # Whilst we do not really want to do sanity checks here being as specific as
     # possible will enhance matching accuracy.
     relative_time_regex = r'-\d{1,3}'
+# FIXME/2018-06-09: (lb): The hard-coded '20' is bad.
+#   Is this code only good for 82.5 years?
+#   That's why Parser uses iso8601 package -- to not have to reinvent wheel, and poorly.
     date_regex = r'20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]'
-    datetime_regex = r'({date}|{time}|{date} {time})'.format(date=date_regex, time=time_regex)
+    datetime_regex = r'({date}|{time}|{date} {time})'.format(
+        date=date_regex, time=time_regex,
+    )
     # Please note the trailing whitespace!
     timeinfo_regex = r'({relative} |{datetime} |{datetime} - {datetime} )'.format(
         datetime=datetime_regex,

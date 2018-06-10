@@ -211,7 +211,7 @@ class StartTrackingBox(Gtk.Box):
         raw_fact = _u(self.raw_fact_entry.props.text)
 
         try:
-            fact = Fact.create_from_raw_fact(raw_fact)
+            fact = Fact.create_from_factoid(raw_fact)
         except Exception as error:
             helpers.show_error(helpers.get_parent_window(self), error)
         else:
